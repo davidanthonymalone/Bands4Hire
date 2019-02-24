@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "530652436579",
+    "firebase_url": "https://bandsearch-e205d.firebaseio.com",
+    "project_id": "bandsearch-e205d",
+    "storage_bucket": "bandsearch-e205d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:530652436579:android:195d43d0e78896a5",
+        "android_client_info": {
+          "package_name": "com.example.bands4hire"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "530652436579-jq5rl6glskks24em3h6jd49ah1e00dt3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bands4hire",
+            "certificate_hash": "8c606aab43f565a011c9941c7b3de79cfa0473aa"
+          }
+        },
+        {
+          "client_id": "530652436579-mddtjai1snij0n8ab4ohrbh2eaeddm57.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATGqFkLWGmKi6ocvE4fsJ6Dy1YfUcBprw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "530652436579-mddtjai1snij0n8ab4ohrbh2eaeddm57.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
