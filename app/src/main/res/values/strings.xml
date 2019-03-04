@@ -1,7 +1,33 @@
 <resources>
     <string name="app_name">Bands4Hire</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_band">Add Band Advert</string>
+    <string name="band_name">Band Name:</string>
+    <string name="location">Location:</string>
+    <string name="price">Price(p/h):</string>
+    <string name="email">Email:</string>
+    <string name="tel_number">Phone No:</string>
+    <string name="available_dates">Dates:</string>
+    <string name="genre">Genre:</string>
 
+    <string name="enter_band_name">Enter Name</string>
+    <string name="enter_genre">Enter Genre</string>
+    <string name="enter_location">Enter Location</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_telephone">Enter Phone</string>
+    <string name="enter_date">Enter Date (dd/mm/yyyy)</string>
+
+    <string-array name="prices">
+        <item>50</item>
+        <item>75</item>
+        <item>100</item>
+        <item>125</item>
+        <item>150</item>
+        <item>175</item>
+        <item>200</item>
+        <item>225</item>
+        <item>250</item>
+    </string-array>
+
+    <string name="save_advert">Save Advert</string>
 </resources>

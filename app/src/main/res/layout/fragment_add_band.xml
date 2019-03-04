@@ -1,14 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.AddBand">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/addBandHeader"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="@string/add_band"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_below="@+id/addBandHeader">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TableRow
+                android:id="@+id/datesAvailableRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/priceRow"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:id="@+id/datesAvailableLabel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/available_dates" />
+
+                <EditText
+                    android:id="@+id/dateInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/enter_date"
+                    android:inputType="date" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/bandNameRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:id="@+id/bandNameLabel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/band_name" />
+
+                <EditText
+                    android:id="@+id/bandNameInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/enter_band_name"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/genreRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bandNameRow"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:id="@+id/genreLabel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/genre" />
+
+                <EditText
+                    android:id="@+id/genreInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/enter_genre"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/emailRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/telNumberRow"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:id="@+id/emailLabel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/email" />
+
+                <EditText
+                    android:id="@+id/emailInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/enter_email"
+                    android:inputType="textEmailAddress" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/telNumberRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/datesAvailableRow"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:id="@+id/telNumberLabel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tel_number" />
+
+                <EditText
+                    android:id="@+id/telNumberInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/enter_telephone"
+                    android:inputType="phone" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/priceRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/locationRow"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:id="@+id/priceLabel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/price" />
+
+                <Spinner
+                    android:id="@+id/priceSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/prices" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/locationRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/genreRow"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="15dp">
+
+                <TextView
+                    android:id="@+id/locationLabel"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/location" />
+
+                <EditText
+                    android:id="@+id/locationInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/enter_location"
+                    android:inputType="textPersonName" />
+            </TableRow>
+
+            <Button
+                android:id="@+id/saveBandButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/emailRow"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="35dp"
+                android:text="@string/save_advert" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>
