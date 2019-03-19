@@ -30,4 +30,25 @@
     </string-array>
 
     <string name="save_advert">Save Advert</string>
+
+
+    <!--Strings for nav drawer-->
+    <string name="nav_header_title">Bands4Hire</string>
+    <string name="nav_header_desc">App Description</string>
+    <string name="nav_header_subtitle">Subtitle</string>
+    <string name="nav_all_adverts">All Adverts</string>
+    <string name="nav_add_advert">Add Advert</string>
+    <string name="nav_my_adverts">My Adverts</string>
+    <string name="nav_about">About Bands4Hire</string>
+    <string name="nav_logout">Logout</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="action_settings">Settings</string>
+
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

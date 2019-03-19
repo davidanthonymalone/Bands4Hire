@@ -48,6 +48,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private static FirebaseAuth.AuthStateListener mAuthListener;
     static GoogleApiClient mGoogleApiClient;
     private static final int RC_SIGN_IN = 9001;
+    FirebaseUser user = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+                user = firebaseAuth.getCurrentUser();
 
                 if(user!=null){
                     Log.v(TAG, "onAuthStateChanged:signed_in: " +user.getUid());
@@ -188,14 +189,17 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     }
 
     public static void logout(){
-        Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
-                new ResultCallback<Status>() {
-                    @Override
-                    public void onResult(@NonNull Status status) {
-                    }
-                }
-        );
         FirebaseAuth.getInstance().signOut();
         mAuth.signOut();
+    }
+
+    @Override
+    public void onBackPressed() {
+        //if user is not logged in allow back press to exit app
+        //(doesn't allow user who has logged out to get back into app
+        //by pressing back from Login screen)
+        if(user == null){
+            finishAffinity();
+        }
     }
 }
