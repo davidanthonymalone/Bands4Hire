@@ -1,10 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     tools:context=".Fragments.SingleAdvert">
 
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/singleAdvertHeader"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="@string/single_advert_header"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/singleAdvertHeader"
+                android:layout_margin="25dp">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:id="@+id/saBandLabel"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/band_name" />
+
+                    <TextView
+                        android:id="@+id/saBandName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:id="@+id/saGenreLabel"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/genre" />
+
+                    <TextView
+                        android:id="@+id/saGenre"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:id="@+id/saLocationLabel"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/location" />
+
+                    <TextView
+                        android:id="@+id/saLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:id="@+id/saPriceLabel"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/price" />
+
+                    <TextView
+                        android:id="@+id/saPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:id="@+id/saDateLabel"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/available_dates" />
+
+                    <TextView
+                        android:id="@+id/saDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:id="@+id/saEmailLabel"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email" />
+
+                    <TextView
+                        android:id="@+id/saEmail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:id="@+id/saPhoneLabel"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tel_number" />
+
+                    <TextView
+                        android:id="@+id/saPhone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:id="@+id/saCreatedByLabel"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/created_by" />
+
+                    <TextView
+                        android:id="@+id/saCreatedBy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:textAlignment="center">
+
+
+                    <Button
+                        android:id="@+id/emailButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.5"
+                        android:text="Send Email"
+                        android:textAlignment="center" />
+
+                    <Button
+                        android:id="@+id/phoneButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="0.5"
+                        android:text="Call Number"
+                        android:textAlignment="center" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp">
+
+
+                    <Button
+                        android:id="@+id/backButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="1"
+                        android:text="Close Advert" />
+                </TableRow>
+            </TableLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

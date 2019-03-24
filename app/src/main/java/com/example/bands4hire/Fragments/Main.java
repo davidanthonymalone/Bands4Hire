@@ -1,5 +1,7 @@
 package com.example.bands4hire.Fragments;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.res.Resources;
 import android.net.Uri;
@@ -31,6 +33,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Queue;
+
+import static com.example.bands4hire.Activities.MainActivity.advertTracker;
 
 public class Main extends Fragment implements MyRecyclerViewAdapter.ItemClickListener {
 
@@ -96,7 +100,15 @@ public class Main extends Fragment implements MyRecyclerViewAdapter.ItemClickLis
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(getActivity(), "You clicked " + adapter.getItem(position).getBandName() + " on row number " + position, Toast.LENGTH_SHORT).show();
+        advertTracker = adverts.get(position);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        SingleAdvert singleAdvert = new SingleAdvert();
+        fragmentTransaction.detach(Main.this);
+        fragmentTransaction.add(R.id.fragmentHolder, singleAdvert);
+        fragmentTransaction.commit();
+
     }
 
 }

@@ -164,7 +164,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         if(!dataSnapshot.exists()){
-                            User newUser = new User(user.getEmail(),user.getDisplayName(), null);
+                            User newUser = new User(user.getEmail(),user.getDisplayName(), null, user.getUid());
                             myRef.child("users").child(user.getUid()).setValue(newUser);
                         }
                     }

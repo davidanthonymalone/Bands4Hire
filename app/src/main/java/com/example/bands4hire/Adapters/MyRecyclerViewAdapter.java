@@ -35,7 +35,11 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         BandAdvert advert = mData.get(position);
-        holder.myTextView.setText(advert.getBandName());
+        holder.rvBand.setText(advert.getBandName());
+        holder.rvDate.setText(advert.getDateAvailable());
+        holder.rvPrice.setText(" -  €"+advert.getPrice()+" per hour");
+        holder.rvGenre.setText(advert.getGenre());
+        holder.rvLocation.setText(" - " +advert.getLocation());
     }
 
     // total number of rows
@@ -47,11 +51,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
+        TextView rvBand, rvDate, rvGenre, rvPrice, rvLocation;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.rvBandName);
+            rvBand = itemView.findViewById(R.id.rvBandName);
+            rvGenre = itemView.findViewById(R.id.rvGenre);
+            rvPrice = itemView.findViewById(R.id.rvPrice);
+            rvDate = itemView.findViewById(R.id.rvDate);
+            rvLocation = itemView.findViewById(R.id.rvLocation);
             itemView.setOnClickListener(this);
         }
 

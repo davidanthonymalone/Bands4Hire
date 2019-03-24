@@ -2,12 +2,13 @@ package com.example.bands4hire.DataModels;
 
 public class BandAdvert {
 
-    String bandName, genre, location, price, dateAvailable, email, phoneNumber;
+    String bandName, genre, location, price, dateAvailable, email, phoneNumber, createdBy, advertId;
 
     public BandAdvert(){}
 
     public BandAdvert(String bandName, String genre, String location, String price,
-                      String dateAvailable, String email, String phoneNumber){
+                      String dateAvailable, String email, String phoneNumber,
+                      String createdBy, String advertId){
         this.bandName = bandName;
         this.genre = genre;
         this.location = location;
@@ -15,6 +16,8 @@ public class BandAdvert {
         this.dateAvailable = dateAvailable;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.createdBy = createdBy;
+        this.advertId = advertId;
     }
 
     public String getBandName() {
@@ -72,4 +75,19 @@ public class BandAdvert {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) { this.createdBy = createdBy;}
+
+    public String getAdvertId() {
+        return advertId;
+    }
+
+    public void setAdvertId(String advertId) {
+        this.advertId = advertId;
+    }
 }
+

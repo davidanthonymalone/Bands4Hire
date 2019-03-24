@@ -4,21 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".Fragments.AddBand">
+    tools:context=".Fragments.EditAdvert">
 
     <TextView
-        android:id="@+id/addBandHeader"
+        android:id="@+id/editAdvertHeader"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:gravity="center"
-        android:text="@string/add_band"
+        android:text="@string/edit_advert_header"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/addBandHeader">
+        android:layout_below="@+id/editAdvertHeader">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -41,7 +41,7 @@
                     android:text="@string/available_dates" />
 
                 <EditText
-                    android:id="@+id/dateInput"
+                    android:id="@+id/editDateInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -65,7 +65,7 @@
                     android:text="@string/band_name" />
 
                 <EditText
-                    android:id="@+id/bandNameInput"
+                    android:id="@+id/editBandNameInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -90,7 +90,7 @@
                     android:text="@string/genre" />
 
                 <EditText
-                    android:id="@+id/genreInput"
+                    android:id="@+id/editGenreInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -115,7 +115,7 @@
                     android:text="@string/email" />
 
                 <EditText
-                    android:id="@+id/emailInput"
+                    android:id="@+id/editEmailInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -140,7 +140,7 @@
                     android:text="@string/tel_number" />
 
                 <EditText
-                    android:id="@+id/telNumberInput"
+                    android:id="@+id/editTelNumberInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -165,7 +165,7 @@
                     android:text="@string/price" />
 
                 <Spinner
-                    android:id="@+id/priceSpinner"
+                    android:id="@+id/editPriceSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/prices" />
@@ -188,7 +188,7 @@
                     android:text="@string/location" />
 
                 <EditText
-                    android:id="@+id/locationInput"
+                    android:id="@+id/editLocationInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -197,7 +197,7 @@
             </TableRow>
 
             <Button
-                android:id="@+id/saveBandButton"
+                android:id="@+id/editBandButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/emailRow"

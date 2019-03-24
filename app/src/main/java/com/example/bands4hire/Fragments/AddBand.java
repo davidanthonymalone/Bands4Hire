@@ -89,25 +89,28 @@ public class AddBand extends Fragment implements View.OnClickListener {
             Toast.makeText(getContext(), "Phone number is too short.", Toast.LENGTH_SHORT).show();
         }
         else {
-            final BandAdvert newAdvert = new BandAdvert(
-                    bandNameInput.getText().toString(),
-                    genreInput.getText().toString(),
-                    locationInput.getText().toString(),
-                    priceSpinner.getSelectedItem().toString(),
-                    dateInput.getText().toString(),
-                    telNumberInput.getText().toString(),
-                    emailInput.getText().toString()
-            );
-
             myRef.child("adverts").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     //getting current number of adverts to create ID for new advert
                     int currentNumber = (int) dataSnapshot.getChildrenCount();
-                    int newID = currentNumber++;
+                    int newIdNumber = currentNumber++;
+                    String key = "advert00"+newIdNumber;
 
-                    //adding advert to collection, when complete reset form and display success message
-                    myRef.child("adverts").child("advert00" + newID).setValue(newAdvert).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    final BandAdvert newAdvert = new BandAdvert(
+                            bandNameInput.getText().toString(),
+                            genreInput.getText().toString(),
+                            locationInput.getText().toString(),
+                            priceSpinner.getSelectedItem().toString(),
+                            dateInput.getText().toString(),
+                            emailInput.getText().toString(),
+                            telNumberInput.getText().toString(),
+                            user.getUid(),
+                            key
+                    );
+
+                    //adding advert to adverts collection, when complete reset form and display success message
+                    myRef.child("adverts").child(key).setValue(newAdvert).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             bandNameInput.setText("");
@@ -121,6 +124,9 @@ public class AddBand extends Fragment implements View.OnClickListener {
                             Toast.makeText(getContext(), "Advert saved successfully", Toast.LENGTH_SHORT).show();
                         }
                     });
+
+                    //adding advert to users collection
+                    myRef.child("users").child(user.getUid()).child("myAdverts").child(key).setValue(newAdvert);
                 }
 
                 @Override

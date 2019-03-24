@@ -7,8 +7,9 @@
     <string name="price">Price(p/h):</string>
     <string name="email">Email:</string>
     <string name="tel_number">Phone No:</string>
-    <string name="available_dates">Dates:</string>
+    <string name="available_dates">Date:</string>
     <string name="genre">Genre:</string>
+    <string name="created_by">Posted by</string>
 
     <string name="enter_band_name">Enter Name</string>
     <string name="enter_genre">Enter Genre</string>
@@ -46,8 +47,15 @@
 
 
     <string name="action_settings">Settings</string>
+    <string name="first_run">Select User Type</string>
+    <string name="user_type_description">
+        As this is your first time using the app, you must select the type of user you are before continuing.\n\nBands can create, edit and remove adverts, and create
+        a profile for their band. Bookers can view all adverts and leave reviews on band profiles.
+    </string>
+    <string name="single_advert_header">Band Advert</string>
+    <string name="my_adverts_header">My Adverts</string>
 
-
+    <string name="edit_advert_header">Edit Advert</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
