@@ -26,6 +26,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import static com.example.bands4hire.Activities.MainActivity.advertTracker;
 
@@ -34,7 +35,7 @@ import static com.example.bands4hire.Activities.MainActivity.advertTracker;
  */
 public class MyAdverts extends Fragment implements MyRecyclerViewAdapter.ItemClickListener {
 
-    MyRecyclerViewAdapter adapter;
+    public MyRecyclerViewAdapter adapter;
     RecyclerView recyclerView;
     ArrayList<BandAdvert> myAdverts = new ArrayList<>();
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();

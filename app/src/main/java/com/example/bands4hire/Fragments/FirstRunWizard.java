@@ -1,7 +1,6 @@
 package com.example.bands4hire.Fragments;
 
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -11,10 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.example.bands4hire.EverythingElse.DrawerLocker;
+import com.example.bands4hire.DrawerLocker.DrawerLocker;
 import com.example.bands4hire.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

@@ -2,8 +2,6 @@ package com.example.bands4hire.Fragments;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Context;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -13,6 +11,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -32,6 +32,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Queue;
 
 import static com.example.bands4hire.Activities.MainActivity.advertTracker;
@@ -40,7 +41,7 @@ public class Main extends Fragment implements MyRecyclerViewAdapter.ItemClickLis
 
 
     //RecyclerView code sourced from https://stackoverflow.com/questions/40584424/simple-android-recyclerview-example
-    MyRecyclerViewAdapter adapter;
+    public static MyRecyclerViewAdapter adapter;
     RecyclerView recyclerView;
     ArrayList<BandAdvert> adverts = new ArrayList<>();
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -96,6 +97,16 @@ public class Main extends Fragment implements MyRecyclerViewAdapter.ItemClickLis
         recyclerView.setAdapter(adapter);
 
         return view;
+    }
+
+    public void onViewCreated(View view, Bundle savedInstanceState){
+        setHasOptionsMenu(true);
+    }
+
+    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater){
+        //making search icon in toolbar visible to user to allow filtering of adverts
+        menu.findItem(R.id.action_search).setVisible(true);
+        super.onCreateOptionsMenu(menu,menuInflater);
     }
 
     @Override

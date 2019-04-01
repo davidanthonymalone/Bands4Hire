@@ -1,14 +1,11 @@
 package com.example.bands4hire.Activities;
 
-import android.app.DownloadManager;
 import android.app.FragmentManager;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,13 +13,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
+import android.support.v7.widget.SearchView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
 import com.example.bands4hire.DataModels.BandAdvert;
-import com.example.bands4hire.EverythingElse.DrawerLocker;
+import com.example.bands4hire.DrawerLocker.DrawerLocker;
 import com.example.bands4hire.Fragments.About;
 import com.example.bands4hire.Fragments.AddBand;
 import com.example.bands4hire.Fragments.FirstRunWizard;
@@ -51,6 +47,7 @@ public class MainActivity extends AppCompatActivity
     String currentFragment = "";
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
+
 
     //This object will be used to pass adverts between Fragments, eg when user
     //selects advert from 'All Adverts' to view, object will be stored here to be
@@ -125,8 +122,28 @@ public class MainActivity extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat
+                .getActionView(menu.findItem(R.id.action_search));
+        searchView.setOnQueryTextListener(OnQuerySearchView);
+        //Search icon should only be available to user on All Adverts screen
+        searchItem.setVisible(false);
         return true;
     }
+
+    private SearchView.OnQueryTextListener OnQuerySearchView = new SearchView.OnQueryTextListener() {
+        @Override
+        public boolean onQueryTextSubmit(String query) {
+            return false;
+        }
+
+        @Override
+        public boolean onQueryTextChange(String newText) {
+            Main.adapter.getFilter().filter(newText);
+            return true;
+        }
+    };
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
