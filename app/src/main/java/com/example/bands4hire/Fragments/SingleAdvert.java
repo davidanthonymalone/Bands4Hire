@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.annotation.NonNull;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
@@ -16,20 +17,29 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.bands4hire.DataModels.Profile;
 import com.example.bands4hire.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import static com.example.bands4hire.Activities.MainActivity.advertTracker;
+import static com.example.bands4hire.Activities.MainActivity.bandTracker;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class SingleAdvert extends Fragment implements View.OnClickListener {
 
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
     TextView bandName, genre, location, price, date,
     email, phoneNumber, createdBy;
 
-    Button emailButton, phoneButton, closeButton;
+    Button emailButton, phoneButton, closeButton, bandProfileButton;
 
     public SingleAdvert() {
         // Required empty public constructor
@@ -63,17 +73,35 @@ public class SingleAdvert extends Fragment implements View.OnClickListener {
         emailButton = view.findViewById(R.id.emailButton);
         phoneButton = view.findViewById(R.id.phoneButton);
         closeButton = view.findViewById(R.id.backButton);
+        bandProfileButton = view.findViewById(R.id.bandProfileButton);
 
         emailButton.setOnClickListener(this);
         phoneButton.setOnClickListener(this);
         closeButton.setOnClickListener(this);
+        bandProfileButton.setOnClickListener(this);
 
+        //storing band profile for use if user clicks View Profile button
+        Query getBandProfile = mDatabase.child("bandProfiles").child(advertTracker.getBandId());
+        getBandProfile.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    bandTracker = dataSnapshot.getValue(Profile.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         return view;
     }
 
     @Override
     public void onClick(View v) {
+        FragmentManager fragmentManager = getFragmentManager();
         switch (v.getId()){
             case R.id.emailButton:
                 //Code sourced from https://stackoverflow.com/questions/8701634/send-email-intent
@@ -92,7 +120,6 @@ public class SingleAdvert extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.backButton:
-                FragmentManager fragmentManager = getFragmentManager();
                 final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 Main mainFragment = new Main();
 
@@ -100,6 +127,14 @@ public class SingleAdvert extends Fragment implements View.OnClickListener {
                 fragmentTransaction.add(R.id.fragmentHolder, mainFragment);
                 fragmentTransaction.commit();
                 break;
+
+            case R.id.bandProfileButton:
+                final FragmentTransaction fragmentTransaction1 = fragmentManager.beginTransaction();
+                BandProfile bandProfile = new BandProfile();
+
+                fragmentTransaction1.detach(SingleAdvert.this);
+                fragmentTransaction1.add(R.id.fragmentHolder, bandProfile);
+                fragmentTransaction1.commit();
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.example.bands4hire.DrawerLocker;
+package com.example.bands4hire.EverythingElse;
 
 public interface DrawerLocker {
     public void setDrawerEnabled(boolean enabled);

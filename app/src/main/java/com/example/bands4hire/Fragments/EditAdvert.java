@@ -109,7 +109,8 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
                     editEmailInput.getText().toString(),
                     editPhoneInput.getText().toString(),
                     currentUser.getUid(),
-                    advertTracker.getAdvertId()
+                    advertTracker.getAdvertId(),
+                    null //TODO CHANGE TO BANDID
             );
 
             //pushing modified advert to all and user advert collections

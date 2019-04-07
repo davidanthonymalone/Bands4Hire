@@ -22,7 +22,8 @@ public class AdvertSeeds {
                 "manager@theramones.com",
                 "00112341234",
                 "Ramones Management",
-                "advert001"
+                "advert001",
+                "band001"
         );
 
         BandAdvert advert2 = new BandAdvert(
@@ -34,7 +35,8 @@ public class AdvertSeeds {
                 "manager@theramones.com",
                 "00112341234",
                 "Ramones Management",
-                "advert002"
+                "advert002",
+                "band001"
         );
 
         BandAdvert advert3 = new BandAdvert(
@@ -46,7 +48,8 @@ public class AdvertSeeds {
                 "manager@theramones.com",
                 "00112341234",
                 "Ramones Management",
-                "advert003"
+                "advert003",
+                "band001"
         );
 
         BandAdvert advert4 = new BandAdvert(
@@ -58,7 +61,8 @@ public class AdvertSeeds {
                 "manager@theramones.com",
                 "00112341234",
                 "Ramones Management",
-                "advert004"
+                "advert004",
+                "band001"
         );
 
         BandAdvert advert5 = new BandAdvert(
@@ -70,7 +74,8 @@ public class AdvertSeeds {
                 "manager@u2.ie",
                 "00353145674567",
                 "U2 Management",
-                "advert005"
+                "advert005",
+                "band002"
         );
 
         BandAdvert advert6 = new BandAdvert(
@@ -82,7 +87,8 @@ public class AdvertSeeds {
                 "manager@u2.ie",
                 "00353145674567",
                 "U2 Management",
-                "advert006"
+                "advert006",
+                "band002"
         );
 
         BandAdvert advert7 = new BandAdvert(
@@ -94,7 +100,8 @@ public class AdvertSeeds {
                 "manager@u2.ie",
                 "00353145674567",
                 "U2 Management",
-                "advert007"
+                "advert007",
+                "band002"
         );
 
         BandAdvert advert8 = new BandAdvert(
@@ -106,7 +113,8 @@ public class AdvertSeeds {
                 "manager@u2.ie",
                 "00353145674567",
                 "U2 Management",
-                "advert008"
+                "advert008",
+                "band002"
         );
 
         BandAdvert advert9 = new BandAdvert(
@@ -118,7 +126,8 @@ public class AdvertSeeds {
                 "manager@thewaxies.ie",
                 "003535145674567",
                 "Waxies Management",
-                "advert009"
+                "advert009",
+                "band003"
         );
 
         BandAdvert advert10 = new BandAdvert(
@@ -130,7 +139,8 @@ public class AdvertSeeds {
                 "manager@thewaxies.ie",
                 "003535145674567",
                 "Waxies Management",
-                "advert0010"
+                "advert0010",
+                "band003"
         );
 
         BandAdvert advert11 = new BandAdvert(
@@ -142,7 +152,8 @@ public class AdvertSeeds {
                 "manager@thewaxies.ie",
                 "003535145674567",
                 "Waxies Management",
-                "advert0011"
+                "advert0011",
+                "band003"
         );
 
         BandAdvert advert12 = new BandAdvert(
@@ -154,7 +165,8 @@ public class AdvertSeeds {
                 "manager@thewaxies.ie",
                 "003535145674567",
                 "Waxies Management",
-                "advert0013"
+                "advert0013",
+                "band003"
         );
 
 

@@ -106,7 +106,8 @@ public class AddBand extends Fragment implements View.OnClickListener {
                             emailInput.getText().toString(),
                             telNumberInput.getText().toString(),
                             user.getUid(),
-                            key
+                            key,
+                            null //TODO Change to BANDID
                     );
 
                     //adding advert to adverts collection, when complete reset form and display success message
