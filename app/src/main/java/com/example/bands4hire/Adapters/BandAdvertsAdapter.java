@@ -13,9 +13,8 @@ import com.example.bands4hire.DataModels.BandAdvert;
 import com.example.bands4hire.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder>
+public class BandAdvertsAdapter extends RecyclerView.Adapter<BandAdvertsAdapter.ViewHolder>
                                     implements Filterable {
 
     private ArrayList<BandAdvert> mData;
@@ -24,7 +23,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public MyRecyclerViewAdapter(Context context, ArrayList<BandAdvert> data) {
+    public BandAdvertsAdapter(Context context, ArrayList<BandAdvert> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mDataFiltered = data;
         this.mData = data;

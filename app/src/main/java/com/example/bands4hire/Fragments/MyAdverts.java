@@ -11,9 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
-import com.example.bands4hire.Adapters.MyRecyclerViewAdapter;
+import com.example.bands4hire.Adapters.BandAdvertsAdapter;
 import com.example.bands4hire.DataModels.BandAdvert;
 import com.example.bands4hire.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,16 +25,15 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 import static com.example.bands4hire.Activities.MainActivity.advertTracker;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MyAdverts extends Fragment implements MyRecyclerViewAdapter.ItemClickListener {
+public class MyAdverts extends Fragment implements BandAdvertsAdapter.ItemClickListener {
 
-    public MyRecyclerViewAdapter adapter;
+    public BandAdvertsAdapter adapter;
     RecyclerView recyclerView;
     ArrayList<BandAdvert> myAdverts = new ArrayList<>();
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -59,7 +57,7 @@ public class MyAdverts extends Fragment implements MyRecyclerViewAdapter.ItemCli
         recyclerView = view.findViewById(R.id.myAdvertsRV);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        adapter = new MyRecyclerViewAdapter(getActivity(), myAdverts);
+        adapter = new BandAdvertsAdapter(getActivity(), myAdverts);
 
         //populating array with data from Firebase
         Query retrieveAdverts = mDatabase.child("users").child(currentUser.getUid()).child("myAdverts");

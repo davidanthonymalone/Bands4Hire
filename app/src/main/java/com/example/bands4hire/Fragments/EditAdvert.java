@@ -1,8 +1,11 @@
 package com.example.bands4hire.Fragments;
 
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
@@ -27,6 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import static android.widget.Toast.*;
 import static com.example.bands4hire.Activities.MainActivity.advertTracker;
 import static com.example.bands4hire.Fragments.AddBand.isValidEmail;
 
@@ -43,6 +47,8 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
     editPhoneInput, editLocationInput;
     Spinner editPriceSpinner;
     Button saveButton;
+    Button deleteButton;
+    MyAdverts myAdvertAdapter;
 
     public EditAdvert() {
         // Required empty public constructor
@@ -63,8 +69,41 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
         editLocationInput = view.findViewById(R.id.editLocationInput);
         editPriceSpinner = view.findViewById(R.id.editPriceSpinner);
         saveButton = view.findViewById(R.id.editBandButton);
+        deleteButton = view.findViewById(R.id.deleteBandAdvert);
 
         saveButton.setOnClickListener(this);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+               // makeText(getContext(), "Clicked on Button", LENGTH_LONG).show();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setMessage("Are you sure you want to delete this review?")
+                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                mDatabase.child("adverts").child(advertTracker.getAdvertId()).removeValue();
+                                mDatabase.child("users").child(currentUser.getUid()).child("myAdverts")
+                                        .child(advertTracker.getAdvertId()).removeValue();
+
+
+
+
+
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                Dialog dialog = builder.create();
+                dialog.show();
+
+            }
+        });
 
         editBandNameInput.setText(advertTracker.getBandName());
         editLocationInput.setText(advertTracker.getLocation());
@@ -84,20 +123,20 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
         if(editBandNameInput.getText().toString().equals("") || editGenreInput.getText().toString().equals("") ||
                 editLocationInput.getText().toString().equals("") || editDateInput.getText().toString().equals("") ||
                 editPhoneInput.getText().toString().equals("") || editEmailInput.getText().toString().equals("")){
-            Toast.makeText(getContext(), "All fields must be filled out before saving.", Toast.LENGTH_SHORT).show();
+            makeText(getContext(), "All fields must be filled out before saving.", LENGTH_SHORT).show();
         }
         //Ensuring the date entered matches the desired format (further validation required to make sure dates are valid, eg not 31/02 etc.)
         else if(editDateInput.getText().toString().length() != 10 ||
                 editDateInput.getText().charAt(2) != '/' || editDateInput.getText().charAt(5) != '/'){
-            Toast.makeText(getContext(), "Date format incorrect, please follow model dd/mm/yyyy", Toast.LENGTH_SHORT).show();
+            makeText(getContext(), "Date format incorrect, please follow model dd/mm/yyyy", LENGTH_SHORT).show();
         }
         //Ensuring that the email is in correct format
         else if(!isValidEmail(editEmailInput.getText().toString())){
-            Toast.makeText(getContext(), "Email format incorrect, please check entered data.", Toast.LENGTH_SHORT).show();
+            makeText(getContext(), "Email format incorrect, please check entered data.", LENGTH_SHORT).show();
         }
         //Validating phone number length, further validation to be added
         else if(editPhoneInput.getText().length() < 7){
-            Toast.makeText(getContext(), "Phone number is too short.", Toast.LENGTH_SHORT).show();
+            makeText(getContext(), "Phone number is too short.", LENGTH_SHORT).show();
         }
         else {
             final BandAdvert editAdvert = new BandAdvert(
@@ -118,7 +157,7 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
             mDatabase.child("users").child(currentUser.getUid()).child("myAdverts")
                     .child(advertTracker.getAdvertId()).setValue(editAdvert);
 
-            Toast.makeText(getContext(), "Changes have been saved.", Toast.LENGTH_SHORT).show();
+            makeText(getContext(), "Changes have been saved.", LENGTH_SHORT).show();
             FragmentManager fragmentManager = getFragmentManager();
             final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             MyAdverts myAdverts = new MyAdverts();
@@ -128,6 +167,11 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
         }
     }
 
+
+    public void deleteAdvert(View v)
+    {
+        makeText(getContext(), "Clicked on Button", LENGTH_LONG).show();
+    }
     //Finding position in array for given string, then setting spinner to match objects price value
     private int findIndex(Spinner spinner, String price){
         for(int i = 0; i<spinner.getCount(); i++){

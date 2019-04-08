@@ -1,13 +1,9 @@
 package com.example.bands4hire.Activities;
 
-import android.app.DownloadManager;
 import android.app.FragmentManager;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,20 +13,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SearchEvent;
-import android.view.View;
-import android.widget.ImageView;
 import android.support.v7.widget.SearchView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
-import com.example.bands4hire.Adapters.MyRecyclerViewAdapter;
 import com.example.bands4hire.DataModels.BandAdvert;
 import com.example.bands4hire.DataModels.Profile;
 import com.example.bands4hire.EverythingElse.DrawerLocker;
 import com.example.bands4hire.Fragments.About;
 import com.example.bands4hire.Fragments.AddBand;
-import com.example.bands4hire.Fragments.BandProfile;
 import com.example.bands4hire.Fragments.FirstRunWizard;
 import com.example.bands4hire.Fragments.Main;
 import com.example.bands4hire.Fragments.MyAdverts;

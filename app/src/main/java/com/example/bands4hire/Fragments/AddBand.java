@@ -26,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.UUID;
+
 
 public class AddBand extends Fragment implements View.OnClickListener {
 
@@ -94,8 +96,8 @@ public class AddBand extends Fragment implements View.OnClickListener {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     //getting current number of adverts to create ID for new advert
                     int currentNumber = (int) dataSnapshot.getChildrenCount();
-                    int newIdNumber = currentNumber++;
-                    String key = "advert00"+newIdNumber;
+                  //  int newIdNumber = currentNumber++;
+                    String key = UUID.randomUUID().toString();
 
                     final BandAdvert newAdvert = new BandAdvert(
                             bandNameInput.getText().toString(),

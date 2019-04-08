@@ -2,28 +2,20 @@ package com.example.bands4hire.Fragments;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.Toast;
 
-import com.example.bands4hire.Adapters.MyRecyclerViewAdapter;
+import com.example.bands4hire.Adapters.BandAdvertsAdapter;
 import com.example.bands4hire.DataModels.BandAdvert;
 import com.example.bands4hire.R;
-import com.google.firebase.FirebaseError;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,16 +24,14 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Queue;
 
 import static com.example.bands4hire.Activities.MainActivity.advertTracker;
 
-public class Main extends Fragment implements MyRecyclerViewAdapter.ItemClickListener {
+public class Main extends Fragment implements BandAdvertsAdapter.ItemClickListener {
 
 
     //RecyclerView code sourced from https://stackoverflow.com/questions/40584424/simple-android-recyclerview-example
-    public static MyRecyclerViewAdapter adapter;
+    public static BandAdvertsAdapter adapter;
     RecyclerView recyclerView;
     ArrayList<BandAdvert> adverts = new ArrayList<>();
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -69,7 +59,7 @@ public class Main extends Fragment implements MyRecyclerViewAdapter.ItemClickLis
         recyclerView = view.findViewById(R.id.allAdvertsRV);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        adapter = new MyRecyclerViewAdapter(getActivity(), adverts);
+        adapter = new BandAdvertsAdapter(getActivity(), adverts);
 
         //populating array with data from Firebase
         Query retrieveAdverts = mDatabase.child("adverts");
