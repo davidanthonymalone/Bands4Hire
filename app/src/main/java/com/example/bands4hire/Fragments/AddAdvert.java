@@ -1,6 +1,8 @@
 package com.example.bands4hire.Fragments;
 
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
@@ -29,18 +31,18 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.UUID;
 
 
-public class AddBand extends Fragment implements View.OnClickListener {
+public class AddAdvert extends Fragment implements View.OnClickListener {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database;
     DatabaseReference myRef;
 
-    EditText bandNameInput, genreInput, locationInput, dateInput,
+    EditText bandNameInput, locationInput, dateInput,
             telNumberInput, emailInput;
-    Spinner priceSpinner;
+    Spinner priceSpinner, genreSpinner;
     Button saveBandButton;
 
-    public AddBand() {
+    public AddAdvert() {
         // Required empty public constructor
     }
 
@@ -55,11 +57,11 @@ public class AddBand extends Fragment implements View.OnClickListener {
         myRef = database.getReference();
 
         bandNameInput = view.findViewById(R.id.bandNameInput);
-        genreInput = view.findViewById(R.id.genreInput);
         locationInput = view.findViewById(R.id.locationInput);
         dateInput = view.findViewById(R.id.dateInput);
         telNumberInput = view.findViewById(R.id.telNumberInput);
         emailInput = view.findViewById(R.id.emailInput);
+        genreSpinner = view.findViewById(R.id.genreSpinner);
         priceSpinner = view.findViewById(R.id.priceSpinner);
         saveBandButton = view.findViewById(R.id.saveBandButton);
 
@@ -72,7 +74,7 @@ public class AddBand extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         //Ensuring all fields have had data entered into them by user
-        if(bandNameInput.getText().toString().equals("") || genreInput.getText().toString().equals("") ||
+        if(bandNameInput.getText().toString().equals("") ||
                 locationInput.getText().toString().equals("") || dateInput.getText().toString().equals("") ||
                 telNumberInput.getText().toString().equals("") || emailInput.getText().toString().equals("")){
             Toast.makeText(getContext(), "All fields must be filled out before saving.", Toast.LENGTH_SHORT).show();
@@ -101,7 +103,7 @@ public class AddBand extends Fragment implements View.OnClickListener {
 
                     final BandAdvert newAdvert = new BandAdvert(
                             bandNameInput.getText().toString(),
-                            genreInput.getText().toString(),
+                            genreSpinner.getSelectedItem().toString(),
                             locationInput.getText().toString(),
                             priceSpinner.getSelectedItem().toString(),
                             dateInput.getText().toString(),
@@ -109,7 +111,8 @@ public class AddBand extends Fragment implements View.OnClickListener {
                             telNumberInput.getText().toString(),
                             user.getUid(),
                             key,
-                            null //TODO Change to BANDID
+                            key
+
                     );
 
                     //adding advert to adverts collection, when complete reset form and display success message
@@ -117,14 +120,21 @@ public class AddBand extends Fragment implements View.OnClickListener {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             bandNameInput.setText("");
-                            genreInput.setText("");
                             locationInput.setText("");
+                            genreSpinner.setSelection(0);
                             priceSpinner.setSelection(0);
                             dateInput.setText("");
                             telNumberInput.setText("");
                             emailInput.setText("");
 
                             Toast.makeText(getContext(), "Advert saved successfully", Toast.LENGTH_SHORT).show();
+
+                            FragmentManager fragmentManager = getFragmentManager();
+                            final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            MyAdverts myAdverts = new MyAdverts();
+                            fragmentTransaction.detach(AddAdvert.this);
+                            fragmentTransaction.add(R.id.fragmentHolder, myAdverts);
+                            fragmentTransaction.commit();
                         }
                     });
 

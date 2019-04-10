@@ -8,31 +8,23 @@ import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.Fragment;
-import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.bands4hire.DataModels.BandAdvert;
 import com.example.bands4hire.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 import static android.widget.Toast.*;
 import static com.example.bands4hire.Activities.MainActivity.advertTracker;
-import static com.example.bands4hire.Fragments.AddBand.isValidEmail;
+import static com.example.bands4hire.Fragments.AddAdvert.isValidEmail;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,7 +37,7 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
 
     EditText editBandNameInput, editGenreInput, editDateInput, editEmailInput,
     editPhoneInput, editLocationInput;
-    Spinner editPriceSpinner;
+    Spinner editPriceSpinner, editGenreSpinner;
     Button saveButton;
     Button deleteButton;
     MyAdverts myAdvertAdapter;
@@ -62,7 +54,7 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_edit_advert, container, false);
 
         editBandNameInput = view.findViewById(R.id.editBandNameInput);
-        editGenreInput = view.findViewById(R.id.editGenreInput);
+        editGenreInput = view.findViewById(R.id.genreSpinnerEdit);
         editDateInput = view.findViewById(R.id.editDateInput);
         editEmailInput = view.findViewById(R.id.editEmailInput);
         editPhoneInput = view.findViewById(R.id.editTelNumberInput);
@@ -86,6 +78,13 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
                                 mDatabase.child("adverts").child(advertTracker.getAdvertId()).removeValue();
                                 mDatabase.child("users").child(currentUser.getUid()).child("myAdverts")
                                         .child(advertTracker.getAdvertId()).removeValue();
+
+                                FragmentManager fragmentManager = getFragmentManager();
+                                final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                MyAdverts myAdverts = new MyAdverts();
+                                fragmentTransaction.detach(EditAdvert.this);
+                                fragmentTransaction.add(R.id.fragmentHolder, myAdverts);
+                                fragmentTransaction.commit();
 
 
 
@@ -141,7 +140,7 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
         else {
             final BandAdvert editAdvert = new BandAdvert(
                     editBandNameInput.getText().toString(),
-                    editGenreInput.getText().toString(),
+                    editGenreSpinner.getSelectedItem().toString(),
                     editLocationInput.getText().toString(),
                     editPriceSpinner.getSelectedItem().toString(),
                     editDateInput.getText().toString(),

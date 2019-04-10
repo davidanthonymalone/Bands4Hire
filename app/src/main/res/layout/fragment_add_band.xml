@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    tools:context=".Fragments.AddBand">
+    tools:context=".Fragments.AddAdvert">
 
     <TextView
         android:id="@+id/addBandHeader"
@@ -89,13 +89,13 @@
                     android:layout_height="wrap_content"
                     android:text="@string/genre" />
 
-                <EditText
-                    android:id="@+id/genreInput"
+                <Spinner
+                    android:id="@+id/genreSpinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="@string/enter_genre"
-                    android:inputType="textPersonName" />
+                    android:layout_below="@+id/priceSpinner"
+                    android:entries="@array/genre" />
+
             </TableRow>
 
             <TableRow
@@ -169,6 +169,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:entries="@array/prices" />
+
             </TableRow>
 
             <TableRow

@@ -8,14 +8,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.NonNull;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.bands4hire.DataModels.Profile;
 import com.example.bands4hire.R;
@@ -121,7 +119,7 @@ public class SingleAdvert extends Fragment implements View.OnClickListener {
 
             case R.id.backButton:
                 final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                Main mainFragment = new Main();
+                AllAdverts mainFragment = new AllAdverts();
 
                 fragmentTransaction.detach(SingleAdvert.this);
                 fragmentTransaction.add(R.id.fragmentHolder, mainFragment);
@@ -132,6 +130,7 @@ public class SingleAdvert extends Fragment implements View.OnClickListener {
                 final FragmentTransaction fragmentTransaction1 = fragmentManager.beginTransaction();
                 BandProfile bandProfile = new BandProfile();
 
+                Log.v("SingleAdvert","BandTracker: "+bandTracker.getBandName());
                 fragmentTransaction1.detach(SingleAdvert.this);
                 fragmentTransaction1.add(R.id.fragmentHolder, bandProfile);
                 fragmentTransaction1.commit();

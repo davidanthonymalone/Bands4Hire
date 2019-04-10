@@ -1,7 +1,6 @@
 package com.example.bands4hire.Fragments;
 
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -11,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.bands4hire.EverythingElse.DrawerLocker;
@@ -65,7 +63,7 @@ public class FirstRunWizard extends Fragment implements View.OnClickListener {
 
         FragmentManager fragmentManager = getFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Main mainFragment = new Main();
+        AllAdverts mainFragment = new AllAdverts();
 
         if(!bandSelected && !bookerSelected){
             Toast.makeText(getActivity(), "A selection must be made before proceeding.", Toast.LENGTH_SHORT).show();

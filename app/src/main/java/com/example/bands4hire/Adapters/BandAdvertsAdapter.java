@@ -53,6 +53,8 @@ public class BandAdvertsAdapter extends RecyclerView.Adapter<BandAdvertsAdapter.
         return mDataFiltered.size();
     }
 
+    /*Learned how to do the filter at:
+    * https://www.androidhive.info/2017/11/android-recyclerview-with-search-filter-functionality/*/
     @Override
     public Filter getFilter(){
         return new Filter() {

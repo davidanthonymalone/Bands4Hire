@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 
 import static com.example.bands4hire.Activities.MainActivity.advertTracker;
 
-public class Main extends Fragment implements BandAdvertsAdapter.ItemClickListener {
+public class AllAdverts extends Fragment implements BandAdvertsAdapter.ItemClickListener {
 
 
     //RecyclerView code sourced from https://stackoverflow.com/questions/40584424/simple-android-recyclerview-example
@@ -37,7 +38,7 @@ public class Main extends Fragment implements BandAdvertsAdapter.ItemClickListen
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
-    public Main() {
+    public AllAdverts() {
         // Required empty public constructor
     }
 
@@ -101,12 +102,14 @@ public class Main extends Fragment implements BandAdvertsAdapter.ItemClickListen
 
     @Override
     public void onItemClick(View view, int position) {
+        advertTracker = null;
         advertTracker = adverts.get(position);
+        Log.v("AllAdverts", "AdvertTracker: "+advertTracker.getBandName());
 
         FragmentManager fragmentManager = getFragmentManager();
         final FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         SingleAdvert singleAdvert = new SingleAdvert();
-        fragmentTransaction.detach(Main.this);
+        fragmentTransaction.detach(AllAdverts.this);
         fragmentTransaction.add(R.id.fragmentHolder, singleAdvert);
         fragmentTransaction.commit();
 

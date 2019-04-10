@@ -21,9 +21,9 @@ import com.example.bands4hire.DataModels.BandAdvert;
 import com.example.bands4hire.DataModels.Profile;
 import com.example.bands4hire.EverythingElse.DrawerLocker;
 import com.example.bands4hire.Fragments.About;
-import com.example.bands4hire.Fragments.AddBand;
+import com.example.bands4hire.Fragments.AddAdvert;
+import com.example.bands4hire.Fragments.AllAdverts;
 import com.example.bands4hire.Fragments.FirstRunWizard;
-import com.example.bands4hire.Fragments.Main;
 import com.example.bands4hire.Fragments.MyAdverts;
 import com.example.bands4hire.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new Main()).addToBackStack("MainFragment").commit();
+                    fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new AllAdverts()).addToBackStack("MainFragment").commit();
                     currentFragment = "MainFragment";
                     fragmentManager.executePendingTransactions();
                 }else{
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new Main()).addToBackStack("MainFragment").commit();
+        fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new AllAdverts()).addToBackStack("MainFragment").commit();
         fragmentManager.executePendingTransactions();
 
     }
@@ -118,7 +118,8 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(getApplicationContext(), "User type must be selected before exiting,", Toast.LENGTH_SHORT).show();
         }
         else {
-            super.onBackPressed();
+            fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new AllAdverts()).addToBackStack("MainFragment").commit();
+            fragmentManager.executePendingTransactions();
         }
     }
 
@@ -144,7 +145,7 @@ public class MainActivity extends AppCompatActivity
 
         @Override
         public boolean onQueryTextChange(String newText) {
-            Main.adapter.getFilter().filter(newText);
+            AllAdverts.adapter.getFilter().filter(newText);
             return true;
         }
     };
@@ -174,10 +175,10 @@ public class MainActivity extends AppCompatActivity
         Log.v("MainActivity", "inside onNavItemSelected with item: "+id);
 
         if (id == R.id.nav_all_adverts) {
-            fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new Main()).addToBackStack("MainFragment").commit();
+            fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new AllAdverts()).addToBackStack("MainFragment").commit();
             fragmentManager.executePendingTransactions();
         } else if (id == R.id.nav_add_advert) {
-            fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new AddBand()).addToBackStack("AddAdvert").commit();
+            fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new AddAdvert()).addToBackStack("AddAdvert").commit();
             fragmentManager.executePendingTransactions();
         } else if (id == R.id.nav_my_adverts) {
             fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new MyAdverts()).addToBackStack("MyAdverts").commit();
@@ -195,6 +196,7 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
     //used if user is on first run with app, is brought to screen where they
     //select what type of user they are (band/booker), this disables nav drawer and icon
