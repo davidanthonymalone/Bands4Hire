@@ -204,6 +204,7 @@
                 android:layout_below="@+id/emailRow"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="35dp"
+                android:background="@color/colorPrimary"
                 android:text="@string/save_advert" />
         </RelativeLayout>
     </ScrollView>

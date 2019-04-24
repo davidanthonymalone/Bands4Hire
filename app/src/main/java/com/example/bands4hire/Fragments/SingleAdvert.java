@@ -48,7 +48,7 @@ public class SingleAdvert extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_single_advertisement, container, false);
+        View view = inflater.inflate(R.layout.fragment_single_advert, container, false);
 
         bandName = view.findViewById(R.id.saBandName);
         genre = view.findViewById(R.id.saGenre);
