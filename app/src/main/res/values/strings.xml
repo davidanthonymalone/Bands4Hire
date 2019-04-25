@@ -42,7 +42,7 @@
         <item>Electric</item>
     </string-array>
 
-    <string name="save_advert">Save Advert</string>
+    <string name="save_advert">Save Advert   </string>
     <string name="delete_advert">Delete Advert</string>
 
 

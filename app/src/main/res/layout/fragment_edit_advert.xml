@@ -203,15 +203,20 @@
                 android:layout_below="@+id/emailRow"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="17dp"
+                android:background="@color/colorPrimary"
+                android:minWidth="105dip"
                 android:text="@string/save_advert" />
+
             <Button
                 android:id="@+id/deleteBandAdvert"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
                 android:layout_below="@+id/editBandButton"
+                android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="35dp"
+                android:layout_marginBottom="1dp"
+                android:background="@color/colorPrimary"
                 android:text="@string/delete_advert" />
         </RelativeLayout>
     </ScrollView>

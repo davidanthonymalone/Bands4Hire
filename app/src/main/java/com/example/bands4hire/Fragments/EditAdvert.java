@@ -54,7 +54,7 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_edit_advert, container, false);
 
         editBandNameInput = view.findViewById(R.id.editBandNameInput);
-        editGenreInput = view.findViewById(R.id.genreSpinnerEdit);
+        editGenreSpinner = view.findViewById(R.id.genreSpinnerEdit);
         editDateInput = view.findViewById(R.id.editDateInput);
         editEmailInput = view.findViewById(R.id.editEmailInput);
         editPhoneInput = view.findViewById(R.id.editTelNumberInput);
@@ -109,8 +109,7 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
         editPhoneInput.setText(advertTracker.getPhoneNumber());
         editEmailInput.setText(advertTracker.getEmail());
         editDateInput.setText(advertTracker.getDateAvailable());
-        editGenreInput.setText(advertTracker.getGenre());
-
+       editGenreSpinner.setSelection(findIndex(editGenreSpinner, advertTracker.getGenre()));
         editPriceSpinner.setSelection(findIndex(editPriceSpinner, advertTracker.getPrice()));
 
         return view;
@@ -119,7 +118,7 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
 //Ensuring all fields have had data entered into them by currentUser
-        if(editBandNameInput.getText().toString().equals("") || editGenreInput.getText().toString().equals("") ||
+        if(editBandNameInput.getText().toString().equals("")  ||
                 editLocationInput.getText().toString().equals("") || editDateInput.getText().toString().equals("") ||
                 editPhoneInput.getText().toString().equals("") || editEmailInput.getText().toString().equals("")){
             makeText(getContext(), "All fields must be filled out before saving.", LENGTH_SHORT).show();
