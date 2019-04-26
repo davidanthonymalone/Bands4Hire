@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bands4hire.DataModels.Profile;
 import com.example.bands4hire.R;
@@ -71,13 +72,20 @@ public class SingleAdvert extends Fragment implements View.OnClickListener {
         emailButton = view.findViewById(R.id.emailButton);
         phoneButton = view.findViewById(R.id.phoneButton);
         closeButton = view.findViewById(R.id.backButton);
-        bandProfileButton = view.findViewById(R.id.bandProfileButton);
+        /*I was in the process of setting up a profile for each band and letting users leave reviews on the profiles.
+        * This was nearly setup but I had to give up on it due to time restraints*/
+       // bandProfileButton = view.findViewById(R.id.bandProfileButton);
 
         emailButton.setOnClickListener(this);
         phoneButton.setOnClickListener(this);
         closeButton.setOnClickListener(this);
-        bandProfileButton.setOnClickListener(this);
 
+        /*
+        bandProfileButton.setOnClickListener(this);
+*/
+        /*I was in the process of setting up a profile for each band and letting users leave reviews on the profiles.
+         * This was nearly setup but I had to give up on it due to time restraints*/
+        /*
         //storing band profile for use if user clicks View Profile button
         Query getBandProfile = mDatabase.child("bandProfiles").child(advertTracker.getBandId());
         getBandProfile.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -85,15 +93,19 @@ public class SingleAdvert extends Fragment implements View.OnClickListener {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
                     bandTracker = dataSnapshot.getValue(Profile.class);
+                }else{
+                    Toast.makeText(getContext(), "Profile Doesn't Exist", Toast.LENGTH_LONG).show();
                 }
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });
 
+        });
+*/
         return view;
     }
 
@@ -126,14 +138,18 @@ public class SingleAdvert extends Fragment implements View.OnClickListener {
                 fragmentTransaction.commit();
                 break;
 
-            case R.id.bandProfileButton:
-                final FragmentTransaction fragmentTransaction1 = fragmentManager.beginTransaction();
-                BandProfile bandProfile = new BandProfile();
+            /*I was in the process of setting up a profile for each band and letting users leave reviews on the profiles.
+             * This was nearly setup but I had to give up on it due to time restraints*/
+            /*case R.id.bandProfileButton:
 
-                Log.v("SingleAdvert","BandTracker: "+bandTracker.getBandName());
-                fragmentTransaction1.detach(SingleAdvert.this);
-                fragmentTransaction1.add(R.id.fragmentHolder, bandProfile);
-                fragmentTransaction1.commit();
+//                final FragmentTransaction fragmentTransaction1 = fragmentManager.beginTransaction();
+//                BandProfile bandProfile = new BandProfile();
+//
+//                Log.v("SingleAdvert","BandTracker: "+bandTracker.getBandName());
+//                fragmentTransaction1.detach(SingleAdvert.this);
+//                fragmentTransaction1.add(R.id.fragmentHolder, bandProfile);
+//                fragmentTransaction1.commit();
+*/
         }
     }
 }
