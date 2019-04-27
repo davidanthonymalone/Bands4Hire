@@ -17,6 +17,7 @@ import android.support.v7.widget.SearchView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+
 import com.example.bands4hire.DataModels.BandAdvert;
 import com.example.bands4hire.DataModels.Profile;
 import com.example.bands4hire.EverythingElse.DrawerLocker;
@@ -49,6 +50,9 @@ public class MainActivity extends AppCompatActivity
     String currentFragment = "";
     DrawerLayout drawer;
     ActionBarDrawerToggle toggle;
+    static NavigationView navigationView;
+
+    public static String userType;
 
 
     //These objects will be used to pass adverts between Fragments, eg when user
@@ -64,12 +68,10 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //todo: ssed methods for testing and demonstration purposes only
+        //todo: seed methods for testing and demonstration purposes only
         seedAdverts();
         seedUsers();
         seedProfiles();
-
-        Log.v("MainActivity", "inside onCreate");
 
         drawer = findViewById(R.id.drawer_layout);
         toggle = new ActionBarDrawerToggle(
@@ -77,17 +79,22 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(MainActivity.this);
 
-        //Users collection is checked to see if 'userType' has been stored yet; if yes, the user has already selected
-        //their user type, if not they will be shown a user selection fragment before opening up the application to them
-
+        /*
+         * Users collection is checked to see if 'userType' has been stored yet; if yes, the user has
+         * already selected their user type, if not they will be shown a user selection fragment before
+         * opening up the application to them...
+         * (Two user types - 'Band' and 'Booker', each has their own navigation options and functionality)
+         */
         Query checkUserType = myDatabase.child("users").child(currentUser.getUid()).child("userType");
         checkUserType.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
+                    userType = dataSnapshot.getValue().toString();
+                    drawerSetup();
                     fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new AllAdverts()).addToBackStack("MainFragment").commit();
                     currentFragment = "MainFragment";
                     fragmentManager.executePendingTransactions();
@@ -106,7 +113,15 @@ public class MainActivity extends AppCompatActivity
 
         fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new AllAdverts()).addToBackStack("MainFragment").commit();
         fragmentManager.executePendingTransactions();
+    }
 
+    //Changing navigation options shown in nav_drawer, dependent on user type
+    public static void drawerSetup(){
+        if(userType.equals("Booker")) {
+            navigationView.getMenu().setGroupVisible(R.id.booker_nav_group, true);
+        }else {
+            navigationView.getMenu().setGroupVisible(R.id.band_nav_group, true);
+        }
     }
 
     @Override
@@ -118,8 +133,7 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(getApplicationContext(), "User type must be selected before exiting,", Toast.LENGTH_SHORT).show();
         }
         else {
-            fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new AllAdverts()).addToBackStack("MainFragment").commit();
-            fragmentManager.executePendingTransactions();
+            super.onBackPressed();
         }
     }
 
@@ -167,14 +181,13 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Log.v("MainActivity", "inside onNavItemSelected with item: "+id);
 
-        if (id == R.id.nav_all_adverts) {
+        if (id == R.id.nav_all_adverts_band || id == R.id.nav_all_adverts_booker) {
             fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new AllAdverts()).addToBackStack("MainFragment").commit();
             fragmentManager.executePendingTransactions();
         } else if (id == R.id.nav_add_advert) {
@@ -185,6 +198,9 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.executePendingTransactions();
         } else if (id == R.id.nav_about) {
             fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new About()).addToBackStack("About").commit();
+            fragmentManager.executePendingTransactions();
+        } else if (id == R.id.nav_add_advert) {
+            fragmentManager.beginTransaction().replace(R.id.fragmentHolder, new AddAdvert()).addToBackStack("AddBand").commit();
             fragmentManager.executePendingTransactions();
         } else if (id == R.id.nav_logout) {
             Intent loginActivity = new Intent(this, Login.class);
@@ -197,9 +213,8 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
     //used if user is on first run with app, is brought to screen where they
-    //select what type of user they are (band/booker), this disables nav drawer and icon
+    //select what type of user they are (band/booker), this disables nav drawer and icon to block navigation
     public void setDrawerEnabled(boolean enabled) {
         int lockMode = enabled ? DrawerLayout.LOCK_MODE_UNLOCKED :
                 DrawerLayout.LOCK_MODE_LOCKED_CLOSED;

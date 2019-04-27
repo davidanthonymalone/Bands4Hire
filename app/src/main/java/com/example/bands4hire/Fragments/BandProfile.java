@@ -38,6 +38,7 @@ import static com.example.bands4hire.Activities.MainActivity.bandTracker;
  * A simple {@link Fragment} subclass.
  */
 public class BandProfile extends Fragment implements View.OnClickListener {
+    /*This adapter is for reviews on the band profile.  I had to give up on the band profile/reviews due to time constraint*/
 
     static DatabaseReference myDatabase = FirebaseDatabase.getInstance().getReference();
     FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();

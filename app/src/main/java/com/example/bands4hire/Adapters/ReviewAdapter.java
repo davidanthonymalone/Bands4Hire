@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
-
+/*This adapter is for reviews on the band profile.  I had to give up on the band profile/reviews due to time constraint*/
     private ArrayList<Review> mData;
     private LayoutInflater mInflater;
 

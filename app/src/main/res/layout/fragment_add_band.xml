@@ -68,6 +68,7 @@
                     android:id="@+id/bandNameInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:capitalize="words"
                     android:ems="10"
                     android:hint="@string/enter_band_name"
                     android:inputType="textPersonName" />
@@ -199,11 +200,12 @@
 
             <Button
                 android:id="@+id/saveBandButton"
-                android:layout_width="wrap_content"
+                android:layout_width="189dip"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/emailRow"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:background="@color/colorPrimary"
                 android:text="@string/save_advert" />
         </RelativeLayout>

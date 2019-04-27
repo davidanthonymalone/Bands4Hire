@@ -3,9 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        android:id="@+id/booker_nav_group"
+        android:visible="true">
         <item
-            android:id="@+id/nav_all_adverts"
+            android:id="@+id/nav_all_adverts_booker"S
+            android:title="@string/nav_all_adverts" />
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/band_nav_group"
+        android:visible="false">
+        <item
+            android:id="@+id/nav_all_adverts_band"
             android:title="@string/nav_all_adverts" />
         <item
             android:id="@+id/nav_add_advert"
@@ -27,5 +37,4 @@
                 android:title="@string/nav_logout" />
         </menu>
     </item>
-
 </menu>

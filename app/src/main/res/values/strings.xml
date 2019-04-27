@@ -67,6 +67,8 @@
     </string>
     <string name="single_advert_header">Band Advert</string>
     <string name="my_adverts_header">My Adverts</string>
+    <string name="nav_add_band">Add Band</string>
+    <string name="nav_my_bands">My Bands</string>
     <string name="band_profile_header">Band Profile</string>
 
     <string name="edit_advert_header">Edit Advert</string>

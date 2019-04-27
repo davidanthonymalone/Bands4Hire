@@ -123,7 +123,7 @@ public class EditAdvert extends Fragment implements View.OnClickListener {
                 editPhoneInput.getText().toString().equals("") || editEmailInput.getText().toString().equals("")){
             makeText(getContext(), "All fields must be filled out before saving.", LENGTH_SHORT).show();
         }
-        //Ensuring the date entered matches the desired format (further validation required to make sure dates are valid, eg not 31/02 etc.)
+        //Ensuring the date entered matches the desired format
         else if(editDateInput.getText().toString().length() != 10 ||
                 editDateInput.getText().charAt(2) != '/' || editDateInput.getText().charAt(5) != '/'){
             makeText(getContext(), "Date format incorrect, please follow model dd/mm/yyyy", LENGTH_SHORT).show();
