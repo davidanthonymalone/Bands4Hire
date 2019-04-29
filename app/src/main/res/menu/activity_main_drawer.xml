@@ -7,7 +7,7 @@
         android:id="@+id/booker_nav_group"
         android:visible="true">
         <item
-            android:id="@+id/nav_all_adverts_booker"S
+            android:id="@+id/nav_all_adverts_booker"
             android:title="@string/nav_all_adverts" />
     </group>
 

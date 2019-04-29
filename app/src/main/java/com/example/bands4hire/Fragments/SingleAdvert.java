@@ -114,7 +114,8 @@ public class SingleAdvert extends Fragment implements View.OnClickListener {
         FragmentManager fragmentManager = getFragmentManager();
         switch (v.getId()){
             case R.id.emailButton:
-                //Code sourced from https://stackoverflow.com/questions/8701634/send-email-intent
+                /*Code sourced from https://stackoverflow.com/questions/8701634/send-email-intent
+                * The code for the launch email or launch phone number when a user wants to email or call a band was found above*/
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO,
                         Uri.fromParts("mailto", advertTracker.getEmail(),null));
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Booking Enquiry for "+advertTracker.getBandName()

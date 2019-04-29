@@ -33,6 +33,8 @@ import java.util.UUID;
 
 public class AddAdvert extends Fragment implements View.OnClickListener {
 
+    /*https://firebase.google.com/docs/database/android/start
+    * Firebase Realtime database was developed with him from the Firebase Documentation*/
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database;
     DatabaseReference myRef;
@@ -151,7 +153,8 @@ public class AddAdvert extends Fragment implements View.OnClickListener {
 
     }
 
-    //Method sourced from https://stackoverflow.com/a/15808057
+    /*Method sourced from https://stackoverflow.com/a/15808057
+    * To check if its a valid email in the Add Advert Screen*/
     public static boolean isValidEmail(CharSequence target) {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }

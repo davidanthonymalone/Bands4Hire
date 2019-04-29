@@ -31,7 +31,8 @@ import static com.example.bands4hire.Activities.MainActivity.advertTracker;
 public class AllAdverts extends Fragment implements BandAdvertsAdapter.ItemClickListener {
 
 
-    //RecyclerView code sourced from https://stackoverflow.com/questions/40584424/simple-android-recyclerview-example
+    /* Learned to do recycler view at:
+    *RecyclerView code sourced from https://stackoverflow.com/questions/40584424/simple-android-recyclerview-example*/
     public static BandAdvertsAdapter adapter;
     RecyclerView recyclerView;
     ArrayList<BandAdvert> adverts = new ArrayList<>();

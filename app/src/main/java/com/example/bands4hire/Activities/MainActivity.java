@@ -85,8 +85,7 @@ public class MainActivity extends AppCompatActivity
         /*
          * Users collection is checked to see if 'userType' has been stored yet; if yes, the user has
          * already selected their user type, if not they will be shown a user selection fragment before
-         * opening up the application to them...
-         * (Two user types - 'Band' and 'Booker', each has their own navigation options and functionality)
+         * opening up the application to them.
          */
         Query checkUserType = myDatabase.child("users").child(currentUser.getUid()).child("userType");
         checkUserType.addListenerForSingleValueEvent(new ValueEventListener() {
